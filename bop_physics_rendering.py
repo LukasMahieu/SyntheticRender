@@ -186,12 +186,13 @@ for i in range(configs['scenes_to_sample']):
     
     #Write data in bop format
     if configs['outputs']['bop_annotations']:
-        bproc.writer.write_bop(os.path.join(args.output_dir, 'bop_data'),
-                            dataset = args.lablight_models_path,
+        bproc.writer.write_bop(os.path.join(configs['paths']['output_dir'], 'bop_data'),
+                            target_objects = sampled_target_objs,
                             depths = data["depth"],
                             colors = data["colors"], 
                             color_file_format = "JPEG",
-                            ignore_dist_thres = 10)
+                            append_to_existing_output = True,
+                            ignore_dist_thres = int(configs['camera']['radius_max'])+1)
 
     # Write data to coco file
     if configs['outputs']['coco_annotations']:
