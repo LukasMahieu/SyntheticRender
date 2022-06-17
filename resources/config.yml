@@ -1,0 +1,27 @@
+# File/folder paths
+paths:
+  bop_parent_path: 'resources/bop_data'
+  lablight_models_path: 'resources/specprep_models'
+  cc_textures_path: 'resources/cc_textures'
+  output_dir: 'output/'
+
+# Number of samples
+samples_per_scene: 1 # N times Camera sampling from same scene
+scenes_to_sample: 3 # Generating new scene and dropping new objects
+
+# Numbers of objects to sample per scene
+n_distractors: 2 # distractor LineMod objects
+n_objects: 2 # Lablight's objects
+sample_n_object: False # If true, this will sample between [1, n_objects] number of objects. If False, this will render exactly n_objects in each scene.
+
+# Light energy values to sample between
+light:
+  min_energy: 10 # watts
+  max_energy: 100 # watts
+
+# Camera angles and distance to objects to sample between
+camera:
+  elevation_min: 70 # angle of elevation in degrees [-90,90]
+  elevation_max: 90 # angle of elevation in degrees [-90,90]
+  radius_min: 0.2 # meters
+  radius_max: 0.6 # meters   

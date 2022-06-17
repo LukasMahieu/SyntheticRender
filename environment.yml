@@ -1,0 +1,22 @@
+name: synthetic_rendering
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - numpy==1.22.4
+  - pip
+  - pip:
+    - blenderproc==2.3.0
+    - h5py==3.7.0
+    - idna==3.3
+    - kiwisolver==1.4.2
+    - matplotlib==3.5.2
+    - packaging==21.3
+    - pillow==9.1.1
+    - progressbar==2.5
+    - pyparsing==3.0.9
+    - python-dateutil==2.8.2
+    - pyyaml==6.0
+    - requests==2.27.1
+    - six==1.16.0
+    - urllib3==1.26.9
