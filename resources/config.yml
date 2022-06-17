@@ -5,6 +5,11 @@ paths:
   cc_textures_path: 'resources/cc_textures'
   output_dir: 'output/'
 
+# Output BOP and/or COCO format annotations
+outputs:
+  coco_annotations: False
+  bop_annotations: True
+
 # Number of samples
 samples_per_scene: 1 # N times Camera sampling from same scene
 scenes_to_sample: 3 # Generating new scene and dropping new objects

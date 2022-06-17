@@ -183,19 +183,28 @@ for i in range(configs['scenes_to_sample']):
 
     # render the whole pipeline
     data = bproc.renderer.render()
-
-    # Render segmentation images
-    seg_data = bproc.renderer.render_segmap(map_by=["instance", "class"])
+    
+    #Write data in bop format
+    if configs['outputs']['bop_annotations']:
+        bproc.writer.write_bop(os.path.join(args.output_dir, 'bop_data'),
+                            dataset = args.lablight_models_path,
+                            depths = data["depth"],
+                            colors = data["colors"], 
+                            color_file_format = "JPEG",
+                            ignore_dist_thres = 10)
 
     # Write data to coco file
-    bproc.writer.write_coco_annotations(os.path.join(configs['paths']['output_dir'], 'coco_data'),
-                            instance_segmaps=seg_data["instance_segmaps"],
-                            instance_attribute_maps=seg_data["instance_attribute_maps"],
-                            colors=data["colors"],
-                            append_to_existing_output=True,
-                            mask_encoding_format='polygon')
-
-    
+    if configs['outputs']['coco_annotations']:
+        # Render segmentation images
+        seg_data = bproc.renderer.render_segmap(map_by=["instance", "class"])
+        
+        bproc.writer.write_coco_annotations(os.path.join(configs['paths']['output_dir'], 'coco_data'),
+                                instance_segmaps=seg_data["instance_segmaps"],
+                                instance_attribute_maps=seg_data["instance_attribute_maps"],
+                                colors=data["colors"],
+                                append_to_existing_output=True,
+                                mask_encoding_format='polygon')
+        
     # Hide objects again
     for obj in (sampled_target_objs + sampled_distractor_bop_objs):      
         obj.disable_rigidbody()
@@ -206,12 +215,3 @@ for i in range(configs['scenes_to_sample']):
         for i,mat in enumerate(obj.get_materials()):
             mat.set_principled_shader_value("Base Color", old_colours_dict[obj][i])
 
-    # Write data in bop format
-    # bproc.writer.write_bop(os.path.join(args.output_dir, 'bop_data'),
-    #                        dataset = args.lablight_models_path,
-    #                        depths = data["depth"],
-    #                        colors = data["colors"], 
-    #                        color_file_format = "JPEG",
-    #                        ignore_dist_thres = 10)
-    
-# Reformat COCO annotations
