@@ -12,7 +12,7 @@ outputs:
 
 # Number of samples
 samples_per_scene: 1 # N times Camera sampling from same scene
-scenes_to_sample: 3 # Generating new scene and dropping new objects
+scenes_to_sample: 1 # Generating new scene and dropping new objects
 
 # Numbers of objects to sample per scene
 n_distractors: 2 # distractor LineMod objects

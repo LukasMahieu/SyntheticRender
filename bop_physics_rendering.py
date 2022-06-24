@@ -50,6 +50,7 @@ for obj in (distractor_bop_objs):
     obj.set_cp("category_id", 0) # If 0, this gets treated as background
 
 for j, obj in enumerate(loaded_models):
+    obj.set_scale([0.001, 0.001, 0.001]) # mm to meters
     obj.set_shading_mode('auto')
     obj.hide(True)
     obj.set_cp("category_id", j+1)
