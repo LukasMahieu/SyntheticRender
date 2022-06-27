@@ -20,8 +20,8 @@ with open(args.config_path, 'r') as file:
 print(configs)
 
 # load all objects initially
-
-available_models = [model for model in os.listdir(configs['paths']['lablight_models_path']) if model.endswith('.obj')]
+# Only load specific_models that are specified in configs
+available_models = [model for model in os.listdir(configs['paths']['lablight_models_path']) if (model.endswith('.obj')) and (model in configs['specific_models'] if len(configs['specific_models']) > 0 else True)]
 loaded_models = []
 
 assert int(configs['n_objects']) <= len(available_models), 'Not enough .obj models found to sample from using specified n samples'

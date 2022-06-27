@@ -10,13 +10,16 @@ outputs:
   coco_annotations: False
   bop_annotations: True
 
+# Select specific models to render ([obj1.obj, obj2.obj]). Leave list empty to render all models from 'lablight_models_path'.
+specific_models: ['micropipette_mm.obj']
+
 # Number of samples
-samples_per_scene: 1 # N times Camera sampling from same scene
+samples_per_scene: 20 # N times Camera sampling from same scene
 scenes_to_sample: 1 # Generating new scene and dropping new objects
 
 # Numbers of objects to sample per scene
 n_distractors: 2 # distractor LineMod objects
-n_objects: 2 # Lablight's objects
+n_objects: 1 # Lablight's objects
 sample_n_object: False # If true, this will sample between [1, n_objects] number of objects. If False, this will render exactly n_objects in each scene.
 
 # Light energy values to sample between
