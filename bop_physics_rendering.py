@@ -208,9 +208,13 @@ for i in range(configs['scenes_to_sample']):
                                 colors=data["colors"],
                                 append_to_existing_output=True,
                                 mask_encoding_format='polygon')
+
+    # Save 3D bbox coordinates
+    # for obj in (sampled_target_objs):
+    #     print(obj.get_bound_box(local_coords=False)*1000) # mm2m 
         
     # Hide objects again
-    for obj in (sampled_target_objs + sampled_distractor_bop_objs):      
+    for obj in (sampled_target_objs + sampled_distractor_bop_objs):
         obj.disable_rigidbody()
         obj.hide(True)
 
